@@ -15,7 +15,7 @@ public class OrderRepository {
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     private final EntityTransaction trans;
 
-    public OrderRepository(EntityManager entityManager) {
+    public OrderRepository() {
         this.entityManager = JPAUtil.getEntityManager();
         this.trans = entityManager.getTransaction();
     }

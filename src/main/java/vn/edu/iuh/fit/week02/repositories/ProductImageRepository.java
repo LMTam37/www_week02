@@ -16,7 +16,7 @@ public class ProductImageRepository {
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     private final EntityTransaction trans;
 
-    public ProductImageRepository(EntityManager entityManager) {
+    public ProductImageRepository() {
         this.entityManager = JPAUtil.getEntityManager();
         this.trans = entityManager.getTransaction();
     }

@@ -17,7 +17,7 @@ public class ProductPriceRepository {
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     private final EntityTransaction trans;
 
-    public ProductPriceRepository(EntityManager entityManager) {
+    public ProductPriceRepository() {
         this.entityManager = JPAUtil.getEntityManager();
         this.trans = entityManager.getTransaction();
     }
