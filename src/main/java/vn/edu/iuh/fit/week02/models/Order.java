@@ -1,12 +1,13 @@
 package vn.edu.iuh.fit.week02.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.sql.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "order")
+@Table(name = "`order`")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,6 +15,7 @@ public class Order {
     private Long orderId;
 
     @Column(name = "order_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Date orderDate;
 
     @ManyToOne

@@ -1,5 +1,7 @@
 package vn.edu.iuh.fit.week02.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import vn.edu.iuh.fit.week02.enums.EmployeeStatus;
 
@@ -18,6 +20,7 @@ public class Employee {
     private String fullName;
 
     @Column(name = "dob")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Date dob;
 
     @Column(name = "email")
@@ -33,6 +36,7 @@ public class Employee {
     private EmployeeStatus status;
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Order> orders;
 
     public Employee() {

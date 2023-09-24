@@ -2,6 +2,7 @@ package vn.edu.iuh.fit.week02.services;
 
 import vn.edu.iuh.fit.week02.models.Order;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,4 +16,8 @@ public interface OrderService {
     void update(Order order);
 
     void delete(Long orderId);
+
+    List<Order> findByOrderDate(Date date);
+
+    List<Order> findByOrderDateRange(Date startDate, Date endDate);
 }

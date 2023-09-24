@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.week02.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,6 +9,7 @@ public class OrderDetail {
     @Id
     @ManyToOne
     @JoinColumn(name = "order_id")
+    @JsonIgnore
     private Order order;
 
     @Id
@@ -18,6 +20,7 @@ public class OrderDetail {
     @Column(name = "quantity")
     private Integer quantity;
 
+    @Column(name = "price")
     private Double productPrice;
 
     public OrderDetail() {

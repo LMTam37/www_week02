@@ -9,6 +9,7 @@ import vn.edu.iuh.fit.week02.models.Order;
 import vn.edu.iuh.fit.week02.services.OrderService;
 import vn.edu.iuh.fit.week02.services.impl.OrderServiceImpl;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,5 +78,32 @@ public class OrderResource {
             return Response.ok(order).build();
         }
         return Response.status(Response.Status.NOT_FOUND).build();
+    }
+
+    @GET
+    @Path("/by-date/{date}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getOrdersByDate(@PathParam("date") String dateString) {
+        try {
+            Date date = Date.valueOf(dateString);
+            List<Order> orders = orderService.findByOrderDate(date);
+            return Response.ok(orders).build();
+        } catch (IllegalArgumentException e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("Invalid date format. Use yyyy-MM-dd").build();
+        }
+    }
+
+    @GET
+    @Path("/by-date-range/{startDate}/{endDate}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getOrdersByDateRange(@PathParam("startDate") String startDateString, @PathParam("endDate") String endDateString) {
+        try {
+            Date startDate = Date.valueOf(startDateString);
+            Date endDate = Date.valueOf(endDateString);
+            List<Order> orders = orderService.findByOrderDateRange(startDate, endDate);
+            return Response.ok(orders).build();
+        } catch (IllegalArgumentException e) {
+            return Response.status(Response.Status.BAD_REQUEST).entity("Invalid date format. Use yyyy-MM-dd").build();
+        }
     }
 }
