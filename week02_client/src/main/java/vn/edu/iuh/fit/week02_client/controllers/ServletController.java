@@ -1,5 +1,7 @@
 package vn.edu.iuh.fit.week02_client.controllers;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -7,6 +9,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.List;
+import java.util.Map;
 
 @WebServlet("/controls")
 public class ServletController extends HttpServlet {
@@ -15,7 +23,7 @@ public class ServletController extends HttpServlet {
         String action = req.getParameter("action");
         switch (action) {
             case "products":
-                req.getRequestDispatcher("products.jsp").forward(req, resp);
+                handleProductsRequest(req, resp);
                 break;
             case "cart":
                 req.getRequestDispatcher("cart.jsp").forward(req, resp);
@@ -28,6 +36,28 @@ public class ServletController extends HttpServlet {
         }
     }
 
+    private void handleProductsRequest(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .GET()
+                    .uri(URI.create("http://localhost:8080/week02_war/api/products"))
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            if (response.statusCode() == 200) {
+                String responseBody = response.body();
+                ObjectMapper objectMapper = new ObjectMapper();
+                List<Map<String, Object>> products = objectMapper.readValue(responseBody, new TypeReference<>() {
+                });
+                req.setAttribute("products", products);
+                req.getRequestDispatcher("products.jsp").forward(req, resp);
+            }
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
