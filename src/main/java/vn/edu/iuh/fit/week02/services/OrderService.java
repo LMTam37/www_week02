@@ -20,4 +20,6 @@ public interface OrderService {
     List<Order> findByOrderDate(Date date);
 
     List<Order> findByOrderDateRange(Date startDate, Date endDate);
+
+    List<Order> findBySalespersonAndDateRange(Long empId, Date startDate, Date endDate);
 }

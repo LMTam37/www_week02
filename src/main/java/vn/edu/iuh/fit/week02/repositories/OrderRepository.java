@@ -45,6 +45,16 @@ public class OrderRepository {
         return query.getResultList();
     }
 
+    public List<Order> findBySalespersonAndDateRange(Long empId, Date startDate, Date endDate) {
+        String jpql = "SELECT o FROM Order o WHERE o.employee.empId = :empId AND o.orderDate BETWEEN :startDate AND :endDate";
+        TypedQuery<Order> query = entityManager.createQuery(jpql, Order.class);
+        query.setParameter("empId", empId);
+        query.setParameter("startDate", startDate);
+        query.setParameter("endDate", endDate);
+        return query.getResultList();
+    }
+
+
     public void save(Order order) {
         try {
             trans.begin();

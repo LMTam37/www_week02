@@ -81,7 +81,7 @@ public class OrderResource {
     }
 
     @GET
-    @Path("/by-date/{date}")
+    @Path("/statistics/{date}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOrdersByDate(@PathParam("date") String dateString) {
         try {
@@ -94,7 +94,7 @@ public class OrderResource {
     }
 
     @GET
-    @Path("/by-date-range/{startDate}/{endDate}")
+    @Path("/statistics/{startDate}/{endDate}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOrdersByDateRange(@PathParam("startDate") String startDateString, @PathParam("endDate") String endDateString) {
         try {
@@ -106,4 +106,16 @@ public class OrderResource {
             return Response.status(Response.Status.BAD_REQUEST).entity("Invalid date format. Use yyyy-MM-dd").build();
         }
     }
+
+    @GET
+    @Path("/statistics/salesperson/{empId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getOrderStatisticsBySalespersonAndDateRange(
+            @PathParam("empId") Long empId,
+            @QueryParam("startDate") Date startDate,
+            @QueryParam("endDate") Date endDate) {
+        List<Order> orders = orderService.findBySalespersonAndDateRange(empId, startDate, endDate);
+        return Response.ok(orders).build();
+    }
+
 }

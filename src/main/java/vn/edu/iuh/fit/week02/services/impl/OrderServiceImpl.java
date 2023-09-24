@@ -49,4 +49,9 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> findByOrderDateRange(Date startDate, Date endDate) {
         return orderRepository.findByOrderDateRange(startDate, endDate);
     }
+
+    @Override
+    public List<Order> findBySalespersonAndDateRange(Long empId, Date startDate, Date endDate) {
+        return orderRepository.findBySalespersonAndDateRange(empId, startDate, endDate);
+    }
 }
