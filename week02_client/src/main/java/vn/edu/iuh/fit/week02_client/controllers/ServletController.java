@@ -15,10 +15,13 @@ public class ServletController extends HttpServlet {
         String action = req.getParameter("action");
         switch (action) {
             case "products":
+                req.getRequestDispatcher("products.jsp").forward(req, resp);
                 break;
             case "cart":
+                req.getRequestDispatcher("cart.jsp").forward(req, resp);
                 break;
             case "checkout":
+                req.getRequestDispatcher("checkout.jsp").forward(req, resp);
                 break;
             default:
                 break;
