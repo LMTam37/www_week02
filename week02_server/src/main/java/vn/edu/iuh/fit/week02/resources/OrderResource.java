@@ -94,9 +94,12 @@ public class OrderResource {
     }
 
     @GET
-    @Path("/statistics/{startDate}/{endDate}")
+    @Path("/statistics")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getOrdersByDateRange(@PathParam("startDate") String startDateString, @PathParam("endDate") String endDateString) {
+    public Response getOrdersByDateRange(
+            @QueryParam("startDate") String startDateString,
+            @QueryParam("endDate") String endDateString
+    ) {
         try {
             Date startDate = Date.valueOf(startDateString);
             Date endDate = Date.valueOf(endDateString);
