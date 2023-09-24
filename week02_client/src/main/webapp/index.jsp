@@ -7,21 +7,9 @@
 </head>
 <body>
 
-<h1>Welcome to the Online Store</h1>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <button class="btn btn-primary" onclick="sendRequest('products')">Hiển thị Sản Phẩm</button>
-        </div>
-        <div class="col-md-4">
-            <button class="btn btn-success" onclick="sendRequest('cart')">Giỏ Hàng</button>
-        </div>
-        <div class="col-md-4">
-            <button class="btn btn-danger" onclick="sendRequest('checkout')">Thanh Toán</button>
-        </div>
-    </div>
-</div>
+<button class="btn btn-primary" onclick="sendRequest('products')">Hiển thị Sản Phẩm</button>
+<button class="btn btn-primary" onclick="sendRequest('cart')">Giỏ Hàng</button>
+<button class="btn btn-primary" onclick="sendRequest('checkout')">Thanh Toán</button>
 
 <script>
     function sendRequest(action) {
