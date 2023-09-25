@@ -9,6 +9,7 @@
 <body>
 <div class="container">
     <h1 class="mt-5">Products</h1>
+    <a href="index.jsp" class="btn btn-secondary mb-3">Back</a>
     <table class="table mt-4">
         <thead class="thead-dark">
         <tr>
