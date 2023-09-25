@@ -42,7 +42,7 @@
             </td>
             <td>
                 <form action="controls?action=addToCart" method="post">
-                    <input type="hidden" name="productId" value="<%= product.get("id") %>">
+                    <input type="hidden" name="productId" value="<%= product.get("productId") %>">
                     <button type="submit" class="btn btn-primary">Add to Cart</button>
                 </form>
             </td>

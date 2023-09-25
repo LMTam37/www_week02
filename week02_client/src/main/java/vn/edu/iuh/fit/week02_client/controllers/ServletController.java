@@ -13,6 +13,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -61,7 +62,29 @@ public class ServletController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        String action = req.getParameter("action");
+        switch (action) {
+            case "addToCart":
+                try {
+                    Long productId = Long.parseLong(req.getParameter("productId"));
+
+                    if (productId > 0) {
+                        List<Long> cartItems = (List<Long>) req.getSession().getAttribute("cartItems");
+                        if (cartItems == null) {
+                            cartItems = new ArrayList<>();
+                        }
+                        cartItems.add(productId);
+                        req.getSession().setAttribute("cartItems", cartItems);
+                        resp.sendRedirect("controls?action=products");
+                    }
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+                break;
+            default:
+                break;
+        }
+
     }
 
     @Override
