@@ -20,7 +20,7 @@
         </tr>
         </thead>
         <tbody><%
-            List<Map<String, Object>> products = (List<Map<String, Object>>) request.getAttribute("products");
+            List<Map<String, Object>> products = (List<Map<String, Object>>) request.getSession().getAttribute("products");
 
             for (Map<String, Object> product : products) {
         %>

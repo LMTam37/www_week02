@@ -52,7 +52,7 @@ public class ServletController extends HttpServlet {
                 ObjectMapper objectMapper = new ObjectMapper();
                 List<Map<String, Object>> products = objectMapper.readValue(responseBody, new TypeReference<>() {
                 });
-                req.setAttribute("products", products);
+                req.getSession().setAttribute("products", products);
                 req.getRequestDispatcher("products.jsp").forward(req, resp);
             }
         } catch (IOException | InterruptedException e) {
@@ -75,7 +75,7 @@ public class ServletController extends HttpServlet {
                         }
                         cartItems.add(productId);
                         req.getSession().setAttribute("cartItems", cartItems);
-                        resp.sendRedirect("controls?action=products");
+                        req.getRequestDispatcher("products.jsp").forward(req, resp);
                     }
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
