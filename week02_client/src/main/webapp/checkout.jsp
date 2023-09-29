@@ -28,7 +28,7 @@
             List<Long> cartItems = (List<Long>) request.getSession().getAttribute("cartItems");
             if (cartItems != null) {
                 for (Long productId : cartItems) {
-                    Map<String, Object> product = products.get(productId.intValue());
+                    Map<String, Object> product = products.get(productId.intValue() - 1);
         %>
         <tr>
             <td><%= product.get("name") %>
