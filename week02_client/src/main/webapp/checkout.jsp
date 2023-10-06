@@ -20,6 +20,8 @@
             <th>Image</th>
             <th>Description</th>
             <th>Unit</th>
+            <th>Quantity</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -39,6 +41,15 @@
             </td>
             <td><%= product.get("unit") %>
             </td>
+            <form action="controls?action=checkout" method="post">
+                <td>
+                    <input type="number" name="quantity" min="1" value="1"/>
+                </td>
+                <td>
+                    <input type="hidden" name="productId" value="<%= product.get("productId") %>">
+                    <button type="submit" class="btn btn-success">Checkout</button>
+                </td>
+            </form>
         </tr>
         <%
                 }
@@ -46,8 +57,6 @@
         %>
         </tbody>
     </table>
-
-    <button class="btn btn-primary" onclick="checkout()">Checkout</button>
 </div>
 
 <script>

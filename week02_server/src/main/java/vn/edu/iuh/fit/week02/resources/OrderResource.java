@@ -44,6 +44,7 @@ public class OrderResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response save(Order order) {
+        System.out.println("order = " + order);
         Optional<Order> existingOrder = orderService.findById(order.getOrderId());
         return existingOrder
                 .map(o -> Response.status(Response.Status.FOUND))
