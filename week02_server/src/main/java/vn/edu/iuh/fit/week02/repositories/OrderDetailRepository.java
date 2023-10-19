@@ -5,7 +5,6 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import vn.edu.iuh.fit.week02.models.Employee;
 import vn.edu.iuh.fit.week02.models.OrderDetail;
 import vn.edu.iuh.fit.week02.utils.JPAUtil;
 

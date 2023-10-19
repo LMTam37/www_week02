@@ -3,9 +3,6 @@ package vn.edu.iuh.fit.week02.models;
 import jakarta.persistence.*;
 import vn.edu.iuh.fit.week02.enums.ProductStatus;
 
-import java.sql.Date;
-import java.util.List;
-
 @Entity
 @Table(name = "product")
 public class Product {
